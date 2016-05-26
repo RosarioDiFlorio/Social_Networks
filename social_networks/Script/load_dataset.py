@@ -1,6 +1,7 @@
 import json
 import ast
 from StringIO import StringIO
+from collections import OrderedDict
 
 def load():
     with open('GenDataset/dataset.json') as file:
@@ -111,5 +112,5 @@ def ordered_reverse_db():
 def load_ordered_reverse_db():
     with open('GenDataset/ordered_reverse_db.json') as file:
         stri = file.read()
-        data = json.loads(stri,encoding='utf-8')
+        data = json.loads(stri,encoding='utf-8',object_pairs_hook=OrderedDict)
     return data
