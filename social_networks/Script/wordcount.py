@@ -1,4 +1,6 @@
 from load_dataset import *
+from collections import OrderedDict 
+import operator
 import os
 
 def set_default(obj):
@@ -44,30 +46,35 @@ def invert_db(flag):
         return dataset
     
 
-data = invert_db(False)
+#data = invert_db(False)
 
-for w in data.keys():
-    print w
+#for w in data.keys():
+#    print w
 
 
 
     
 
+    
         
         
         
-        
-        
-        
-        
-        
-        
+def ordered_invert_db():
+        old_db = reverse_db()
+        tmp = sorted(old_db,key = lambda x:old_db[x], reverse = True)
+        sorted_db = OrderedDict((x,old_db[x]) for x in tmp)
+        print("------START DUMPING-----")
+        with open('ordered_reverse_db.json', 'w') as fp:
+            stri = json.dumps(sorted_db, ensure_ascii=False, encoding="utf-8", default = set_default)
+            fp.write(stri)
+        print("------DONE-----")  
+        return sorted_db
             
             
             
             
-        
-        
+    
+ordered_invert_db()
         
         
         
