@@ -42,6 +42,7 @@ def read_content(html):
     
     text = sub(r'<.*>',' ',html)
     #text = sub(r'<.*',' ',html)
+    text = text.lower()
     text = text.split()
     #print text[:20]
     toret = clean_text(text)
