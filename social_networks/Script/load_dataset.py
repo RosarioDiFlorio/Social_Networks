@@ -95,3 +95,21 @@ def reverse_db():
         
     
     return all_reverse_db
+
+def ordered_reverse_db():
+    all_reverse_db = dict()
+    data = load_ordered_reverse_db()
+    for name in data:
+        
+        db = data[name]
+        all_reverse_db[name] = db
+        
+    
+    return all_reverse_db
+
+
+def load_ordered_reverse_db():
+    with open('GenDataset/ordered_reverse_db.json') as file:
+        stri = file.read()
+        data = json.loads(stri,encoding='utf-8')
+    return data
