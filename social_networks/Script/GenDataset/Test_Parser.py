@@ -50,7 +50,7 @@ create_link(dataset)
 print("------FINISHED CREATING-------")
 
 print("------START DUMPING-----")
-with open('dataset_new.json', 'w') as fp:
+with open('dataset.json', 'w') as fp:
         stri = json.dumps(dataset, ensure_ascii=False, encoding="utf-8", default = set_default)
         fp.write(stri)
 print("------DONE-----")
