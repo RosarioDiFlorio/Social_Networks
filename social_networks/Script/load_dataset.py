@@ -21,11 +21,9 @@ def graph():
     all_graph = dict()
     data = load()
     
-    print("LOAD FILE COMPLETE")
-    print(type(data))
-    print(str(data)[:50])
+    print("LOAD JSON FILE COMPLETE")
     for name in data.keys():
-        print("READING "+name)
+        print("READING ->"+name)
         graph = data[name]["graph"]
         all_graph.update(graph)
 
@@ -114,3 +112,17 @@ def load_ordered_reverse_db():
         stri = file.read()
         data = json.loads(stri,encoding='utf-8',object_pairs_hook=OrderedDict)
     return data
+
+
+def get_PageRank_graph():
+	with open('result_PageRank.json') as file:
+			stri = file.read()
+			PageRank_graph = json.loads(stri, encoding='utf-8')
+	return PageRank_graph
+
+def get_HITS_graph():
+	with open('result_HITS.json') as file:
+			stri = file.read()
+			HITS_graph = json.loads(stri, encoding='utf-8')
+	return HITS_graph
+
