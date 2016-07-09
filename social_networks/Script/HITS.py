@@ -4,49 +4,7 @@
 import numpy as np
 from load_dataset import get_fullgraph
 
-def HITS1(graph,step,confidence=1.0e-6):
-  n = len(graph)
-  nodes = range(n)
-  done = 0
-  time = 0
-  
-  #Initialization
-  h = np.ones((n,1))
-  L = np.matrix(graph)
-  a = np.zeros((n,1))
-
-  lastA = np.zeros((n,1))
-  lastH = np.zeros((n,1))
-    
-  while not done and time < step:
-    print("Step: " + str(time)+"/"+str(step))
-    time += 1
-
-    a = np.dot(L.transpose(),h)
-
-    maxA = np.amax(a)
-    a/=maxA
-
-    h = np.dot(L,a)
-    maxH = np.amax(h)
-    h /=maxH
-
-    diffa = np.abs(a - lastA).sum()
-    diffh = np.abs(h - lastH).sum()
-    lastA = a
-    lastH = h
-    
-    if diffa <= confidence or diffh < confidence:
-      done = 1
-    
-  return time, a.flatten().tolist(), h.flatten().tolist()
-
 def HITS2(graph,step,confidence=1.0e-6):
-
-  print("-----START LOADING FULLGRAPH------")
-  grafo = get_fullgraph()
-  graph = grafo
-  print("-----FINISHED LOADING FULLGRAPH------")
 
   nodes=graph.keys()
   n=len(nodes)
@@ -58,26 +16,30 @@ def HITS2(graph,step,confidence=1.0e-6):
   h = dict()
   lastA = dict()
   lastH = dict()
+  olddiffa = 0
+  olddiffh = 0
   for i in nodes:
     a[i] = 0.0
     lastA[i] = 0.0
     h[i] = 1.0 
     lastH[i] = 0.0
 
+  
 
   
   while not done and time < step:
-    print("Step: " + str(time)+"/"+str(step))
+    #print("Step: " + str(time)+"/"+str(step))
     time += 1
     
     maxA = -1
-
-
     for n in nodes:
       incoming = graph[n]["incoming"]
       a[n] = 0
+      if type(incoming) == float:
+        incoming=[]
       for i in incoming:
-          a[n] += h[i]
+          if i in h:
+            a[n] += h[i]
       if a[n] > maxA:
         maxA = a[n]  
  
@@ -93,7 +55,8 @@ def HITS2(graph,step,confidence=1.0e-6):
       if type(outgoing) == float:
         outgoing=[]
       for o in outgoing:
-        h[n] += a[o]
+        if o in a:
+          h[n] += a[o]
       if h[n] > maxH:
         maxH = h[n]
 
@@ -110,15 +73,35 @@ def HITS2(graph,step,confidence=1.0e-6):
     nph = np.array(list(h.values()))
     nplastA = np.array(list(lastA.values()))
     nplastH = np.array(list(lastH.values()))
-
-    diffa = np.abs(npa - nplastA).sum()
-    diffh = np.abs(nph - nplastH).sum()
+    
+    #suma = np.sum(npa)
+    #sumLastA = np.sum(nplastA)
+    #diffa = np.abs(suma - sumLastA)
+    #sumh = np.sum(nph)
+    #sumLastH = np.sum(nplastH)
+    #diffh = np.abs(sumh - sumLastH)
+    
+   
+    diffa = 0 
+    diffh = 0
+    
+    for i in a:
+        diffa += abs(a[i]-lastA[i])
+   
+    for i in h:
+        diffh += abs(h[i]-lastH[i])
+    
+    
     lastA = a.copy()
     lastH = h.copy()
+
+    #print(float(olddiffa)-diffa)
     
     if diffa <= confidence or diffh < confidence:
-      done = 1
-
-    #print("Iteration: " + str(time) + " diff1: " + str(diffa) + " diffh " + str(diffh))
+        done = 1
+       # print("exit at step " + str(time))
+         
     
-  return time, a , h
+    #print("Iteration: " + str(time) +"/" +str(step) + " diffa: " + str(diffa) + " diffh " + str(diffh))
+    
+  return time, a, h
