@@ -37,6 +37,7 @@ def best_match(query, threshold, word_advs):
                 adv_weights[doc] = word_advs[word][doc]
             else:
                 adv_weights[doc] += word_advs[word][doc]
+                
     #We sort all documents by value, in decreasing order
     sorted_docs = OrderedDict(sorted(adv_weights.items(), key=operator.itemgetter(1), reverse=True))
     count = 0
@@ -50,9 +51,6 @@ def best_match(query, threshold, word_advs):
         else:
             break
     return best_docs
-
-def improved_best_match(query, threshold):
-    return 0
 
 
 ###BEST MATCH OPTIMIZED###   

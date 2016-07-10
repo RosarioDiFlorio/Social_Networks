@@ -18,7 +18,9 @@ inverted_db = ordered_reverse_db()
 nquery = 0
 elapsed = 0
 elapsed_opt = 0
-niter = 1000
+elapsed_global = 0
+elapsed_opt_global= 0
+niter = 10
 
 result_dict = dict()
 result_opt_dict = dict()
@@ -29,17 +31,25 @@ with open("query.txt") as file:
     print("---------STARTING ---------")
     while True:
         query = file.readline()
-        #print (" Num Query -> "+ str(nquery) + " Iterations -> " + str(niter))
+        print (" Num Query -> "+ str(nquery) + " Iterations -> " + str(niter))
         if query == "": break
         for i in range(niter):
             
             start_time = timeit.default_timer()
-            result = best_match(query, 0.02, db_normal)
+            result = best_match(query, 0.02, inverted_db)
             elapsed += timeit.default_timer() - start_time
             
             start_time = timeit.default_timer()
             result_opt = best_match_opt(query, 0.02, inverted_db,total_len_docs)
             elapsed_opt += timeit.default_timer() - start_time
+            
+        elapsed_global += float(elapsed/niter)
+        
+        elapsed_opt_global += float(elapsed_opt/niter)
+        
+        elapsed = 0
+        elapsed_opt = 0
+        
         result_dict[query] = result
         result_opt_dict[query] = result_opt
         nquery += 1
@@ -57,8 +67,8 @@ with open("query.txt") as file:
     print("---------TIMES------------")
     print ("Num Iterations -> "+ str(niter))
     print ("Num Query -> " +str(nquery))
-    print ("Time best_match -> "+ str(float(elapsed/nquery)))
-    print ("Time best_match_opt -> "+ str(float(elapsed_opt/nquery)))
+    print ("Time best_match -> "+ str(float(elapsed_global/nquery)))
+    print ("Time best_match_opt -> "+ str(float(elapsed_opt_global/nquery)))
     print("--------------------------")
 
 
