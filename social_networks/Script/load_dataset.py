@@ -80,7 +80,7 @@ def db():
        
        db = data[name]["db"]
        all_db.update(db)
-
+   print("LOAD DB FILE COMPLETE")
    return all_db
 
 
@@ -103,7 +103,7 @@ def ordered_reverse_db():
         db = data[name]
         all_reverse_db[name] = db
         
-    
+    print("LOAD ORDERED REVERSE DB FILE COMPLETE")
     return all_reverse_db
 
 
@@ -125,4 +125,16 @@ def get_HITS_graph():
 			stri = file.read()
 			HITS_graph = json.loads(stri, encoding='utf-8')
 	return HITS_graph
+    
+def get_match_res():
+	with open('result_match.json') as file:
+			stri  = file.read()
+                        res = json.loads(stri, encoding='utf-8')
+	return res
+
+def get_match_opt_res():
+	with open('result_opt_match.json') as file:
+			stri = file.read()
+			res = json.loads(stri, encoding='utf-8')
+	return res
 
