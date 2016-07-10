@@ -29,6 +29,7 @@ def pageRank1(graph, s, step, confidence):
     tmp = add(dot(multiply(s,graph),rank),tax)
     
     #Computes the distance between the old rank vector and the new rank vector in L_1 norm
+  
     diff = 0
     for i in nodes:
       diff += abs(rank[i]-tmp[i])
@@ -59,7 +60,8 @@ def pageRank2(graph,s,step,confidence):
     
     for i in nodes:
       for j in graph[i]:
-        tmp[j] += float(s*rank[i])/len(graph[i]) #Each nodes receives a fraction of its neighbor rank with probability s 
+        if j in graph:  
+            tmp[j] += float(s*rank[i])/len(graph[i]) #Each nodes receives a fraction of its neighbor rank with probability s 
     
     #Computes the distance between the old rank vector and the new rank vector in L_1 norm
     diff = 0
@@ -68,8 +70,9 @@ def pageRank2(graph,s,step,confidence):
       rank[i] = tmp[i]
     
     if diff <= confidence:
-      done = 1
-    
+        done = 1
+        #print("exit at step " + str(time))
+        
   return time, rank
 
 #This function implements the operation executed by a single process.
@@ -149,6 +152,7 @@ def pageRank3(graph,degree,n,s,step,confidence,num_jobs):
         
         if diff <= confidence:
             done = 1
+            
     
   return time, rank
   
