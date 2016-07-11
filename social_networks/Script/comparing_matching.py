@@ -29,9 +29,12 @@ for w in result_match:
         #print(match_ranked[w]["PageRank"][l])
     for l in result_opt_match[w]:
         #print(l)
-        match_ranked[w]["HITS"][l] = HITS[l]
+        ahits = HITS[l]["a"]
+        hhits = HITS[l]["h"]
+        thits = ahits + hhits
+        
+        match_ranked[w]["HITS"][l] = thits
         match_ranked[w]["HITS"] = OrderedDict(sorted(match_ranked[w]["HITS"].items(), key = operator.itemgetter(1), reverse = True))
-
  
 newd = OrderedDict()
 for  q in sorted( match_ranked, key = lambda x:len(match_ranked[x]["PageRank"]), reverse = True ):
