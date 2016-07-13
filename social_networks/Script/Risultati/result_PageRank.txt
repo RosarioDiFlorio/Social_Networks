@@ -1,0 +1,271 @@
+LOAD JSON FILE COMPLETE
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 1000
+Repetitions: 1
+Steps: 5
+Algorithm:	0.0240271091461
+Dump:	0.00758385658264
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 2000
+Repetitions: 1
+Steps: 5
+Algorithm:	0.0548632144928
+Dump:	0.0143609046936
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 3000
+Repetitions: 1
+Steps: 5
+Algorithm:	0.0940098762512
+Dump:	0.0283191204071
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 4000
+Repetitions: 1
+Steps: 6
+Algorithm:	0.170839071274
+Dump:	0.0330700874329
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 5000
+Repetitions: 1
+Steps: 7
+Algorithm:	0.277625799179
+Dump:	0.0431489944458
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 6000
+Repetitions: 1
+Steps: 7
+Algorithm:	0.369884967804
+Dump:	0.0568799972534
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 7000
+Repetitions: 1
+Steps: 7
+Algorithm:	0.480352163315
+Dump:	0.0635209083557
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 8000
+Repetitions: 1
+Steps: 7
+Algorithm:	0.589641094208
+Dump:	0.0697810649872
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 9000
+Repetitions: 1
+Steps: 7
+Algorithm:	0.712399959564
+Dump:	0.0839321613312
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 10000
+Repetitions: 1
+Steps: 8
+Algorithm:	0.978086948395
+Dump:	0.0832979679108
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 11000
+Repetitions: 1
+Steps: 8
+Algorithm:	1.17336916924
+Dump:	0.0949649810791
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 12000
+Repetitions: 1
+Steps: 9
+Algorithm:	1.51259493828
+Dump:	0.106243848801
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 13000
+Repetitions: 1
+Steps: 9
+Algorithm:	1.7723710537
+Dump:	0.112843036652
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 14000
+Repetitions: 1
+Steps: 11
+Algorithm:	2.51722812653
+Dump:	0.119771003723
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 15000
+Repetitions: 1
+Steps: 11
+Algorithm:	2.8560988903
+Dump:	0.12251996994
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 16000
+Repetitions: 1
+Steps: 13
+Algorithm:	3.85064697266
+Dump:	0.138854980469
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 17000
+Repetitions: 1
+Steps: 13
+Algorithm:	4.35956597328
+Dump:	0.153489112854
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 18000
+Repetitions: 1
+Steps: 14
+Algorithm:	5.21699595451
+Dump:	0.174543142319
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 19000
+Repetitions: 1
+Steps: 14
+Algorithm:	5.74386286736
+Dump:	0.187146902084
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 20000
+Repetitions: 1
+Steps: 15
+Algorithm:	6.73912215233
+Dump:	0.190358161926
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 21000
+Repetitions: 1
+Steps: 15
+Algorithm:	7.34810805321
+Dump:	0.196557998657
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 22000
+Repetitions: 1
+Steps: 16
+Algorithm:	8.21643400192
+Dump:	0.216758012772
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 23000
+Repetitions: 1
+Steps: 17
+Algorithm:	9.52083015442
+Dump:	0.2229180336
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 24000
+Repetitions: 1
+Steps: 19
+Algorithm:	11.5210461617
+Dump:	0.207795143127
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 25000
+Repetitions: 1
+Steps: 20
+Algorithm:	13.093914032
+Dump:	0.237010002136
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 26000
+Repetitions: 1
+Steps: 22
+Algorithm:	15.5389590263
+Dump:	0.336787939072
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 27000
+Repetitions: 1
+Steps: 23
+Algorithm:	17.54697299
+Dump:	0.237987995148
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 28000
+Repetitions: 1
+Steps: 25
+Algorithm:	20.4691851139
+Dump:	0.240420818329
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 29000
+Repetitions: 1
+Steps: 26
+Algorithm:	22.6156358719
+Dump:	0.249407052994
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES------------
+Num nodes: 29995
+Repetitions: 1
+Steps: 25
+Algorithm:	23.302822113
+Dump:	0.299121141434
+--------------------------
