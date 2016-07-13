@@ -1,6 +1,6 @@
 echo "start"
 echo "HITS"
-python Test_HITS.py >> result_HITS.txt
+python Test_HITS.py 
 echo "PageRank"
-python python Test_Dataset_PageRank.py >> result_PageRank.txt
+python Test_Dataset_PageRank.py 
 echo "Done"
