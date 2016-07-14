@@ -59,7 +59,7 @@ def runner():
 
     book = xlwt.Workbook(encoding="utf-8")
     sheet1 = book.add_sheet(sheet)
-    confidence = [1e-3,1e-4,1e-5,1e-6]
+    confidence = [1e-4,1e-5,1e-6,1e-7]
     #confidence = [1e-4,1e-5]
     
     
