@@ -125,6 +125,12 @@ def get_HITS_graph():
 			stri = file.read()
 			HITS_graph = json.loads(stri, encoding='utf-8')
 	return HITS_graph
+
+def get_HITS_confidence(confidence):
+    with open('result_HITS'+confidence+'.json') as file:
+        stri = file.read()
+        HITS_graph = json.loads(stri, encoding='utf-8')
+    return HITS_graph
     
 def get_match_res():
 	with open('result_match.json') as file:
