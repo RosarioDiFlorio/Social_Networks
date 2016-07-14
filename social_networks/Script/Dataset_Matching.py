@@ -26,8 +26,8 @@ import operator
 ###BEST MATCH###         
 def best_match(query, threshold, word_advs):
     adv_weights = dict()
-    best_docs = set()
-    
+    best_docs = OrderedDict()
+   
     query_words = query.split()
     
     #For every word we look at each document in the list and we increment the document's weight (based on frequency)
@@ -45,7 +45,7 @@ def best_match(query, threshold, word_advs):
         #if the document's weight is more than threshold
         #and we haven't yet reached 20 documents
         if sorted_docs[doc]>=threshold and count < 20:
-            best_docs.add(doc)
+            best_docs[doc] = sorted_docs
             count += 1
         #this document and all the following are not more than threshold (since docs are in decreasing order)
         else:
@@ -61,7 +61,7 @@ def best_match(query, threshold, word_advs):
 4. returns the 20 documents with higher score."""
 def best_match_opt(query, threshold, word_advs,total_len_docs):
     adv_weights = dict()
-    best_docs = set()
+    best_docs = OrderedDict()
     k = float(total_len_docs*0.2)/100; 
     count_docs = 0
     query_words = query.split()
@@ -91,7 +91,7 @@ def best_match_opt(query, threshold, word_advs,total_len_docs):
         #if the document's weight is more than threshold
         #and we haven't yet reached 20 documents
         if sorted_docs[doc]>=threshold and count < 20:
-            best_docs.add(doc)
+            best_docs[doc] = sorted_docs
             count += 1
         #this document and all the following are not more than threshold (since docs are in decreasing order)
         else:
