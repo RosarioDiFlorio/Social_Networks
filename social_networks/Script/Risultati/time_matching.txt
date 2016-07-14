@@ -1,0 +1,43 @@
+LOAD DB FILE COMPLETE
+LOAD ORDERED REVERSE DB FILE COMPLETE
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES query_l2.txt------------
+Num Iterations -> 10
+Num Query -> 1000
+Time best_match -> 0.00178088784218
+Time best_match_opt -> 0.000118425512314
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES query_l3.txt------------
+Num Iterations -> 10
+Num Query -> 1000
+Time best_match -> 0.00425651917458
+Time best_match_opt -> 0.00029266307354
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES query_l4.txt------------
+Num Iterations -> 10
+Num Query -> 1000
+Time best_match -> 0.00730269670486
+Time best_match_opt -> 0.000665796089172
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES query_l5.txt------------
+Num Iterations -> 10
+Num Query -> 1000
+Time best_match -> 0.00953977539539
+Time best_match_opt -> 0.00102290122509
+--------------------------
+---------STARTING ---------
+---------FINISHED---------
+---------TIMES query_l6.txt------------
+Num Iterations -> 10
+Num Query -> 1000
+Time best_match -> 0.0134684743166
+Time best_match_opt -> 0.00146729836464
+--------------------------
+

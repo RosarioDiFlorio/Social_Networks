@@ -1,7 +1,0 @@
----------TIMES------------
-Num Iterations -> 10
-Num Query -> 1010
-Time best_match -> 0.00572864678827
-Time best_match_opt -> 0.000363992558848
---------------------------
-
