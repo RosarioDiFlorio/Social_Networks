@@ -5,7 +5,7 @@ import timeit
 from load_dataset import *
 import xlwt
 
-def testPageRank(graph, rep = 1,conf = 0):
+def testPageRank(graph, rep = 1,conf = 0,write = True):
     
     elapsed_load = 0
     elapsed_dump = 0
@@ -23,12 +23,13 @@ def testPageRank(graph, rep = 1,conf = 0):
 
             elapsed += timeit.default_timer() - start_time
 
-            start_time_dump = timeit.default_timer()
+            #start_time_dump = timeit.default_timer()
             #print("---------DUMPING RESULT---------")
-            with open('result_PageRank'+ str(conf) +'.json','w') as fp:
+            if write:
+                with open('result_PageRank'+ str(conf) +'.json','w') as fp:
                     json.dump(rank2,fp)
             #print("---------FINISHED DUMPING---------")
-            elapsed_dump += timeit.default_timer() - start_time_dump
+            #elapsed_dump += timeit.default_timer() - start_time_dump
     print("---------FINISHED---------")
     print("---------TIMES------------")
     print("Num nodes: " +  str(len(graph.keys())))
@@ -36,7 +37,7 @@ def testPageRank(graph, rep = 1,conf = 0):
     print("Steps: " + str(time2))
     #print("Load:\t"+str(float(elapsed_load)/rep))
     print("Algorithm:\t"+str(float(elapsed)/rep))
-    print("Dump:\t"+str(float(elapsed_dump)/rep))
+    #print("Dump:\t"+str(float(elapsed_dump)/rep))
     print("--------------------------")
     return  str(len(graph.keys())), str(float(elapsed)/rep),time2
 
@@ -55,7 +56,7 @@ def runner():
     book = xlwt.Workbook(encoding="utf-8")
     sheet1 = book.add_sheet(sheet)
     confidence = [1e-4,1e-5,1e-6,1e-7]
-    #confidence = [1e-4,1e-5]
+    #confidence = [1e-4]
 
     colNodes = 1
     colTime = 2
@@ -73,7 +74,7 @@ def runner():
             g[i] = gr[i]
             j = j + 1
             if j % 1000 == 0 and j != 0:
-                nodes,time,step = testPageRank(g,iterations,c)
+                nodes,time,step = testPageRank(g,iterations,c,False)
                 if flagNodes:
                     sheet1.write(row,colNodes,nodes)
                 sheet1.write(row,colTime,time)
@@ -82,7 +83,7 @@ def runner():
             #print(g)
             #print(".\n")
         g.clear()
-        nodes,time,step = testPageRank(gr,iterations,c)
+        nodes,time,step = testPageRank(gr,iterations,c,True)
         if flagNodes: #stampo una sola volta la colonna contenente il numero di nodi processati
             sheet1.write(row,colNodes,nodes)
             flagNodes = False
