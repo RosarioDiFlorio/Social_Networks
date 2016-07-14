@@ -34,11 +34,11 @@ def testPageRank(graph, rep = 1,conf = 0):
     print("Num nodes: " +  str(len(graph.keys())))
     print("Repetitions: " + str(rep))
     print("Steps: " + str(time2))
-   # print("Load:\t"+str(float(elapsed_load)/rep))
+    #print("Load:\t"+str(float(elapsed_load)/rep))
     print("Algorithm:\t"+str(float(elapsed)/rep))
     print("Dump:\t"+str(float(elapsed_dump)/rep))
     print("--------------------------")
-    return  str(len(graph.keys())), str(float(elapsed)/rep)
+    return  str(len(graph.keys())), str(float(elapsed)/rep),time2
 
 
 
@@ -54,34 +54,43 @@ def runner():
 
     book = xlwt.Workbook(encoding="utf-8")
     sheet1 = book.add_sheet(sheet)
-    confidence = [1e-2,1e-3,1e-4,1e-5,1e-6]
+    confidence = [1e-3,1e-4,1e-5,1e-6]
     #confidence = [1e-4,1e-5]
 
     colNodes = 1
     colTime = 2
-   
+    colStep = 3
+    flagNodes = True
     for c in confidence:
         row = 0
-        sheet1.write(row,colTime,"confidence: " + str(c))
+        if flagNodes:
+            sheet1.write(row,colNodes,"Num nodes")
+           sheet1.write(row,colTime,"time (confidence: " + str(c) + ")")
+        sheet1.write(row,colStep,"steps")
         row += 1
         j = 0
         for i in gr:
             g[i] = gr[i]
             j = j + 1
             if j % 1000 == 0 and j != 0:
-                nodes,time = testPageRank(g,iterations,c)
-                sheet1.write(row,colTime,nodes)
-                sheet1.write(row,colNodes,time)
+                nodes,time,step = testPageRank(g,iterations,c)
+                if flagNodes:
+                    sheet1.write(row,colNodes,nodes)
+                sheet1.write(row,colTime,time)
+                sheet1.write(row,colStep,step)
                 row += 1
             #print(g)
             #print(".\n")
         g.clear()
-        nodes,time = testPageRank(gr,iterations,c)
-        sheet1.write(row,colTime,nodes)
-        sheet1.write(row,colNodes,time)
-        colTime += 2
-        colNodes += 2
-        
+        nodes,time,step = testPageRank(gr,iterations,c)
+        if flagNodes: #stampo una sola volta la colonna contenente il numero di nodi processati
+            sheet1.write(row,colNodes,nodes)
+            flagNodes = False
+        sheet1.write(row,colTime,time)
+        sheet1.write(row,colStep,step)
+        colTime += 3
+        colNodes += 3
+        colStep += 3
     book.save(filename)
     
     
