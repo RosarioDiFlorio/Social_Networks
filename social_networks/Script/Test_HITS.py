@@ -31,7 +31,7 @@ def testHits(graph,rep = 1,conf = 0):
 
         start_time_dump = timeit.default_timer()
         #print("---------DUMPING RESULT---------")
-        with open('result_HITS.json','w') as fp:
+        with open('result_HITS'+ str(conf) +'.json','w') as fp:
             json.dump(result,fp)
         #print("---------FINISHED DUMPING---------")
         elapsed_dump += timeit.default_timer() - start_time_dump

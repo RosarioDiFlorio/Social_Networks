@@ -25,7 +25,7 @@ def testPageRank(graph, rep = 1,conf = 0):
 
             start_time_dump = timeit.default_timer()
             #print("---------DUMPING RESULT---------")
-            with open('result_PageRank.json','w') as fp:
+            with open('result_PageRank'+ str(conf) +'.json','w') as fp:
                     json.dump(rank2,fp)
             #print("---------FINISHED DUMPING---------")
             elapsed_dump += timeit.default_timer() - start_time_dump
@@ -65,7 +65,7 @@ def runner():
         row = 0
         if flagNodes:
             sheet1.write(row,colNodes,"Num nodes")
-           sheet1.write(row,colTime,"time (confidence: " + str(c) + ")")
+        sheet1.write(row,colTime,"time (confidence: " + str(c) + ")")
         sheet1.write(row,colStep,"steps")
         row += 1
         j = 0
