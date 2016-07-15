@@ -114,39 +114,29 @@ def load_ordered_reverse_db():
     return data
 
 
-def get_PageRank_graph():
-	with open('result_PageRank.json') as file:
-			stri = file.read()
-			PageRank_graph = json.loads(stri, encoding='utf-8')
-	return PageRank_graph
 
 def get_PageRank_confidence(confidence):
-    with open('result_PageRank'+confidence+'.json') as file:
+    with open('Risultati/result_PageRank'+confidence+'.json') as file:
         stri = file.read()
         HITS_graph = json.loads(stri, encoding='utf-8')
     return HITS_graph
     
 
-def get_HITS_graph():
-	with open('result_HITS.json') as file:
-			stri = file.read()
-			HITS_graph = json.loads(stri, encoding='utf-8')
-	return HITS_graph
 
 def get_HITS_confidence(confidence):
-    with open('result_HITS'+confidence+'.json') as file:
+    with open('Risultati/result_HITS'+confidence+'.json') as file:
         stri = file.read()
         HITS_graph = json.loads(stri, encoding='utf-8')
     return HITS_graph
 
 def get_match_res():
-	with open('result_match.json') as file:
+	with open('Risultati/result_match.json') as file:
 			stri  = file.read()
                         res = json.loads(stri, encoding='utf-8')
 	return res
 
 def get_match_opt_res():
-	with open('result_opt_match.json') as file:
+	with open('Risultati/result_opt_match.json') as file:
 			stri = file.read()
 			res = json.loads(stri, encoding='utf-8')
 	return res
