@@ -17,9 +17,24 @@ for c in confidence:
     PageRank = get_PageRank_confidence(c)
     HITS = get_HITS_confidence(c)
 
-
-
-
+    seturl = dict()
+    
+    for w in result_match:
+        seturl[w] = dict()
+        seturl[w].update(result_match[w])
+        seturl[w].update(result_opt_match[w])
+        seturl[w] = OrderedDict(sorted(seturl[w].items(), key = operator.itemgetter(1),reverse = True ))
+    '''
+    for w in seturl:
+        print w
+        for l in seturl[w]:
+            print seturl[w][l]
+    '''    
+        
+        
+        
+        
+            
 
     match_ranked = dict()
     for w in result_match:
@@ -102,13 +117,15 @@ for c in confidence:
     sheet1 = book.add_sheet(sheet)
 
     URL = 0
-    BM = 1
-    BMOPT = 2
-    pagerankBM = 3
-    hitsBM = 4
+    score= 1
+    BM = 2
+    BMOPT = 3
+    pagerankBM = 4
+    hitsBM = 5
 
-    pagerankBMOPT = 5
-    hitsBMOPT = 6
+    pagerankBMOPT = 6
+    hitsBMOPT = 7
+    
 
     sheet1.write(0,URL,"Document")
     sheet1.write(0,BM ,"BM")
@@ -117,12 +134,13 @@ for c in confidence:
     sheet1.write(0,pagerankBMOPT,"PageRank BMOPT")
     sheet1.write(0,hitsBM, "Hits BM")
     sheet1.write(0,hitsBMOPT, "Hits BMOPT")
-        
-
+    sheet1.write(0,score, "Score")
     row = 1
-    for i in dictUrl:
-        for k in dictUrl[i]:
+    for i in seturl:
+        print i
+        for k in seturl[i]:
             sheet1.write(row,URL, str(k))
+            sheet1.write(row,score,seturl[i][k])
             if k in newd[i]["PageRank"]:
                 sheet1.write(row,BM, "Y")
             else:
