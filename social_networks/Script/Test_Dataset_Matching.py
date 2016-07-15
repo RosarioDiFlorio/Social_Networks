@@ -96,7 +96,8 @@ def test_result_matching():
             result_dict[query] = result
             result_opt_dict[query] = result_opt
             nquery += 1
-        
+            
+            print result[query]["score"]
     print("---------FINISHED---------")
     print("---------DUMP RESULT DOCUMENTS-------------")
     with open('result_match.json', 'w') as fp:

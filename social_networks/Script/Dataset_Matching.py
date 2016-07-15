@@ -32,6 +32,8 @@ def best_match(query, threshold, word_advs):
     
     #For every word we look at each document in the list and we increment the document's weight (based on frequency)
     for word in query_words:
+        if word not in word_advs:
+            continue
         for doc in word_advs[word]:
             if doc not in adv_weights.keys():
                 adv_weights[doc] = word_advs[word][doc]
@@ -45,7 +47,7 @@ def best_match(query, threshold, word_advs):
         #if the document's weight is more than threshold
         #and we haven't yet reached 20 documents
         if sorted_docs[doc]>=threshold and count < 20:
-            best_docs[doc] = sorted_docs
+            best_docs[doc] = sorted_docs[doc]
             count += 1
         #this document and all the following are not more than threshold (since docs are in decreasing order)
         else:
@@ -69,6 +71,8 @@ def best_match_opt(query, threshold, word_advs,total_len_docs):
     #query_words.sort(lambda x,y:  cmp(len(y), len(x))) # sort query terms in decreasing order of index length
     #For every word we look at each document in the list and we increment the document's weight (based on frequency)
     for word in query_words:
+        if word not in word_advs:
+            continue
         if flag:
             for doc in word_advs[word]:
                 if len(adv_weights) > k:
@@ -91,7 +95,7 @@ def best_match_opt(query, threshold, word_advs,total_len_docs):
         #if the document's weight is more than threshold
         #and we haven't yet reached 20 documents
         if sorted_docs[doc]>=threshold and count < 20:
-            best_docs[doc] = sorted_docs
+            best_docs[doc] = sorted_docs[doc]
             count += 1
         #this document and all the following are not more than threshold (since docs are in decreasing order)
         else:
