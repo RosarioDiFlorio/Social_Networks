@@ -120,6 +120,13 @@ def get_PageRank_graph():
 			PageRank_graph = json.loads(stri, encoding='utf-8')
 	return PageRank_graph
 
+def get_PageRank_confidence(confidence):
+    with open('result_PageRank'+confidence+'.json') as file:
+        stri = file.read()
+        HITS_graph = json.loads(stri, encoding='utf-8')
+    return HITS_graph
+    
+
 def get_HITS_graph():
 	with open('result_HITS.json') as file:
 			stri = file.read()
@@ -131,7 +138,7 @@ def get_HITS_confidence(confidence):
         stri = file.read()
         HITS_graph = json.loads(stri, encoding='utf-8')
     return HITS_graph
-    
+
 def get_match_res():
 	with open('result_match.json') as file:
 			stri  = file.read()
