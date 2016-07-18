@@ -201,7 +201,7 @@ def best_response_altruistic(name, adv_value, threshold, budget, current_budget,
                     tmp_pay = sort_bids[i+1] #then, I must pay for that slot the bid of the next advertiser
 
     #2) Evaluate for each slot, which one gives to the advertiser the largest utility
-        print tmp_pay
+        #print tmp_pay
         new_utility = slot_ctrs[query][sort_slots[i]]*(adv_value-tmp_pay)
 
         if new_utility > utility:
@@ -288,49 +288,56 @@ def random(name, adv_value, threshold, budget, current_budget, slot_ctrs, histor
 
     toret = {"name": name, "slot": "none"}
 
-    all_bids = []
-    for i in range(len(history)):
-        if query in history[i]:
-            for b in history[i][query]["adv_bids"].values():
-                all_bids += list(b.values())
+    if current_budget >= budget/2:
+        return toret, uniform(0, current_budget)
+    else:
+       return toret, uniform(0, current_budget/2)
+    
 
-    if len(all_bids) == 0:
-        return toret, randint(0, adv_value)
+def altruistic_budget(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp):
 
-    maxbidEVER= max(all_bids)
+    toret = {"name": name, "slot": "none"}
 
-    #bid a random value between 0 and maximum bid all over history
-    return toret, uniform(0, maxbidEVER+1)
-
+    if current_budget >= budget/2:
+        return best_response_altruistic(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
+    else:
+       return budget_saving(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
+    
+    
 
 def competitor_budget(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp):
 
+    toret = {"name": name, "slot": "none"}
+
     if current_budget >= budget/2:
         return competitor(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
     else:
-        return best_response(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
+       return best_response_competitive(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
+    
+    
+    
+def threshold_budget(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp):
 
-
-def preferential_competitor(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp):
-    if adv_value > threshold:
-        return competitor(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
+    toret = {"name": name, "slot": "none"}
+    
+    if adv_value >= threshold:
+        #sono interessato allo slot
+        if current_budget >= budget/2:
+           return best_response_competitive(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
+        else:
+           return best_response(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
     else:
-        return budget_saving(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
+       return budget_saving(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
+    
+    
+def preferential_budget(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp):
 
-
-def best_competitor_budget(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp):
+    toret = {"name": name, "slot": "none"}
 
     if current_budget >= budget/2:
         return best_response_competitive(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
     else:
-        return best_response(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
-
-
-def best_preferential_competitor(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp):
-    if adv_value > threshold:
-        return best_response_competitive(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
-    else:
-        return budget_saving(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
+       return best_response(name, adv_value, threshold, budget, current_budget, slot_ctrs, history, query, tp)
 
 
 

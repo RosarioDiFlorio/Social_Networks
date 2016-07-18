@@ -17,8 +17,7 @@ def run_auction(test_name, num_query, queries, slot_ctrs, adv_values, adv_budget
     adv_cbudgets=adv_budgets.copy() #The current budgets of advertisers
     revenue=0 #The current revenue of the auctioneer
 
-    test_name_val = 0
-
+   
     for i in range(num_query):
         done = True
         current_query = query_sequence[i]
@@ -73,31 +72,8 @@ def run_auction(test_name, num_query, queries, slot_ctrs, adv_values, adv_budget
         if obt_id_num != 1000:
             tot_ut += slot_ctrs[current_query][obt_id]*(adv_values[current_query][test_name] - query_pay[test_name])
 
-        #print(pref_id_num, obt_id_num)
-        if pref_id_num > obt_id_num:
-           #print("he got better")
-           test_name_val += 2
-        elif pref_id_num < obt_id_num:
-           #print("he got worst")
-           test_name_val -= 1
-        else:
-           #print("go what he wants")
-           test_name_val += 1
-
-            #print test_name_val
+       
         
-        '''
-        print("------Current Query------")
-        print ("\t\t" + str(current_query))
-        print("------Query Winners------")
-        print ("\t\t" + str(query_winners))
-        print("------Query Pay------")
-        print ("\t\t" + str(query_pay))
-        print("------Current Budget------")
-        print ("\t\t" + str(adv_cbudgets))
-        '''
-
-        #Update the history
         history.append(dict())
         history[i][current_query]=dict()
         history[i][current_query]["adv_bids"]=dict(adv_bids)
@@ -114,12 +90,7 @@ def run_auction(test_name, num_query, queries, slot_ctrs, adv_values, adv_budget
                 revenue += query_pay[query_winners[j]]
 
         if done:
-            print i
-            print history[i]
-            return float(test_name_val)/i, tot_ut, revenue
+            return tot_ut, revenue
         #print(current_query, query_winners, query_pay, adv_cbudgets)
-        
-    print i
-    print history[i-1]
-    print history[i]
-    return float(test_name_val)/i, tot_ut, revenue
+    
+    return tot_ut, revenue

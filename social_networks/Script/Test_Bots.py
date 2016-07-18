@@ -197,7 +197,7 @@ slot_ctrs = dict()
 #For each query, lists the available slots and their clickthrough rate
 slot_ctrs["query1"]=dict()
 slot_ctrs["query1"]["id1"] = 1
-slot_ctrs["query1"]["id2"] = 1
+slot_ctrs["query1"]["id2"] = 0.80
 
 slot_ctrs["query2"]=dict()
 slot_ctrs["query2"]["id1"] = 0.50
@@ -306,7 +306,7 @@ flagName = False
 book.save(filename) 
 
 
-'''
+
 #####################TEST DINAMICO#########################
 
 
@@ -408,9 +408,9 @@ row = 0
 if flagName:
     sheet1.write(row,colBehavior,"Player")
     sheet1.write(row,colAu,"tipo asta")
-sheet1.write(row,colUtil,"utility (num aste: " + str(i) + ")")
-sheet1.write(row,colRev,"revenue (num aste: " + str(i) + ")")
-sheet1.write(row,colEnemies,"enemies (num aste: " + str(i) + ")")
+sheet1.write(row,colUtil,"utility")
+sheet1.write(row,colRev,"revenue")
+sheet1.write(row,colEnemies,"enemies")
 #debug
 #raw_input("Press Enter to continue...")
 
@@ -446,5 +446,5 @@ flagName = False
 
 
 book.save(filename)
-'''
+
 print("------------FINE---------------")
