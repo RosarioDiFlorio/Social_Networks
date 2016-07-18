@@ -67,10 +67,21 @@ def best_match_opt(query, threshold, word_advs,total_len_docs):
     k = float(total_len_docs*0.2)/100; 
     count_docs = 0
     query_words = query.split()
+    
+    query_dict = dict()
+    
+    for w in query_words:
+        if w not in word_advs:
+            continue
+        query_dict[w] = len(word_advs[w])
+    
+    query_dict = OrderedDict(sorted(query_dict.items(),key = operator.itemgetter(1),reverse = True))
+   
+    
     flag = True
     #query_words.sort(lambda x,y:  cmp(len(y), len(x))) # sort query terms in decreasing order of index length
     #For every word we look at each document in the list and we increment the document's weight (based on frequency)
-    for word in query_words:
+    for word in query_dict:
         if word not in word_advs:
             continue
         if flag:
@@ -100,5 +111,6 @@ def best_match_opt(query, threshold, word_advs,total_len_docs):
         #this document and all the following are not more than threshold (since docs are in decreasing order)
         else:
             break
+    #print best_docs
     return best_docs
 

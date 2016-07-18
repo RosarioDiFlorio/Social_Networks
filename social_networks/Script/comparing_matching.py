@@ -137,10 +137,10 @@ for c in confidence:
     sheet1.write(0,score, "Score")
     row = 1
     for i in seturl:
-        print i
+        #print i
         for k in seturl[i]:
             sheet1.write(row,URL, str(k))
-            sheet1.write(row,score,seturl[i][k])
+            sheet1.write(row,score,str(seturl[i][k]))
             if k in newd[i]["PageRank"]:
                 sheet1.write(row,BM, "Y")
             else:

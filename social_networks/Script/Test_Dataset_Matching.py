@@ -77,8 +77,9 @@ def test_result_matching():
     
     result_dict = dict()
     result_opt_dict = dict()
-    result = list()
-    result_opt = list()
+    
+    result = dict()
+    result_opt = dict()
     nquery = 0
     
     f = "query_adhoc.txt"
@@ -87,17 +88,15 @@ def test_result_matching():
         while True:
             query = file.readline()
             query = str.lower(query)
-            print (" Query -> "+ query)
+            #print (" Query -> "+ query)
             if query == "": break
     
             result = best_match(query, 0.02, inverted_db)
             result_opt = best_match_opt(query, 0.02, inverted_db,total_len_docs)
-            
             result_dict[query] = result
             result_opt_dict[query] = result_opt
             nquery += 1
-            
-            print result[query]["score"]
+    
     print("---------FINISHED---------")
     print("---------DUMP RESULT DOCUMENTS-------------")
     with open('result_match.json', 'w') as fp:
@@ -107,7 +106,7 @@ def test_result_matching():
             stri = json.dumps(result_opt_dict, ensure_ascii=False, encoding="utf-8", default = set_default)
             fp.write(stri)
     print("---------END DUMP-------------")
-
+    
 
 test_result_matching()
 
