@@ -35,7 +35,7 @@ def best_match(query, threshold, word_advs):
         if word not in word_advs:
             continue
         for doc in word_advs[word]:
-            if doc not in adv_weights.keys():
+            if doc not in adv_weights:
                 adv_weights[doc] = word_advs[word][doc]
             else:
                 adv_weights[doc] += word_advs[word][doc]
@@ -84,19 +84,15 @@ def best_match_opt(query, threshold, word_advs,total_len_docs):
     for word in query_dict:
         if word not in word_advs:
             continue
-        if flag:
-            for doc in word_advs[word]:
+        for doc in word_advs[word]:
                 if len(adv_weights) > k:
-                    flag = False
-                if doc not in adv_weights:
-                    adv_weights[doc] = word_advs[word][doc]
+                    if doc in adv_weights:
+                        adv_weights[doc] += word_advs[word][doc]
                 else:
-                    adv_weights[doc] += word_advs[word][doc]
-                
-        else:
-            for doc in word_advs[word]:
-                if doc in adv_weights:
-                    adv_weights[doc] += word_advs[word][doc]
+                    if doc not in adv_weights:
+                        adv_weights[doc] = word_advs[word][doc]
+                    else:
+                        adv_weights[doc] += word_advs[word][doc]
                 
         
     #We sort all documents by value, in decreasing order
@@ -113,4 +109,57 @@ def best_match_opt(query, threshold, word_advs,total_len_docs):
             break
     #print best_docs
     return best_docs
+
+
+
+def best_match_opt_k(query, threshold, word_advs,total_len_docs,p):
+    adv_weights = dict()
+    best_docs = OrderedDict()
+    k = float(total_len_docs*p)/100; 
+    #print k
+    count_docs = 0
+    query_words = query.split()
+    
+    query_dict = dict()
+    
+    for w in query_words:
+        if w not in word_advs:
+            continue
+        query_dict[w] = len(word_advs[w])
+    
+    query_dict = OrderedDict(sorted(query_dict.items(),key = operator.itemgetter(1),reverse = True))
+   
+    
+    flag = True
+    #query_words.sort(lambda x,y:  cmp(len(y), len(x))) # sort query terms in decreasing order of index length
+    #For every word we look at each document in the list and we increment the document's weight (based on frequency)
+    for word in query_dict:
+        if word not in word_advs:
+            continue
+        for doc in word_advs[word]:
+                if len(adv_weights) > k:
+                    if doc in adv_weights:
+                        adv_weights[doc] += word_advs[word][doc]
+                else:
+                    if doc not in adv_weights:
+                        adv_weights[doc] = word_advs[word][doc]
+                    else:
+                        adv_weights[doc] += word_advs[word][doc]
+                
+        
+    #We sort all documents by value, in decreasing order
+    sorted_docs = OrderedDict(sorted(adv_weights.items(), key=operator.itemgetter(1), reverse=True))
+    count = 0
+    for doc in sorted_docs:
+        #if the document's weight is more than threshold
+        #and we haven't yet reached 20 documents
+        if sorted_docs[doc]>=threshold and count < 20:
+            best_docs[doc] = sorted_docs[doc]
+            count += 1
+        #this document and all the following are not more than threshold (since docs are in decreasing order)
+        else:
+            break
+    #print best_docs
+    return best_docs
+
 
