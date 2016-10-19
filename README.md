@@ -3,10 +3,12 @@ In this project we have develop and tested the commons algorithms for social net
 <br>
 Implemented Algorithm 
 <br>
-<br>
+<ul>
+<li>
   PageRank
-  HITS
-  BestMatch
+</li><li>  
+  HITS</li>
+  <li>BestMatch</li>
   Optimization of BestMatch
   First Price Auction
   Second Price Auction
